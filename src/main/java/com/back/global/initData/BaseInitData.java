@@ -23,8 +23,8 @@ public class BaseInitData {
             postRepository.save(post);
 
             Post post2 = new Post();
-            post.setTitle("제목 2");
-            post.setContent("내용 2");
+            post2.setTitle("제목 2");
+            post2.setContent("내용 2");
             postRepository.save(post2);
 
             // insert into posts (content,title,id) values (?,?,default)
