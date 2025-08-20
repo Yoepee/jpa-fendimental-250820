@@ -1,5 +1,6 @@
 package com.back.global.initData;
 
+import com.back.domain.post.entity.Post;
 import com.back.domain.post.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
@@ -14,7 +15,12 @@ public class BaseInitData {
     @Bean
     ApplicationRunner baseInitDataApllicationRunner() {
         return args -> {
-            postRepository.count();
+            Post post = new Post();
+            post.setTitle("제목 1");
+            post.setContent("내용 1");
+
+            postRepository.save(post);
+            // insert into posts (content,title,id) values (?,?,default)
         };
     }
 }
