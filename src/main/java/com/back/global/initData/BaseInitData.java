@@ -2,19 +2,17 @@ package com.back.global.initData;
 
 import com.back.domain.post.entity.Post;
 import com.back.domain.post.service.PostService;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Optional;
 
+@AllArgsConstructor
 @Configuration
 public class BaseInitData {
     private PostService postService;
-    
-    public BaseInitData(PostService postService) {
-        this.postService = postService;
-    }
 
     @Bean
     ApplicationRunner baseInitDataApllicationRunner() {
