@@ -13,5 +13,6 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; // INT
     private String title; // VARCHAR(255)
+    @Column(columnDefinition = "TEXT")
     private String content; // TEXT
 }
