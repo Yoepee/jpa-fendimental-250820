@@ -2,13 +2,15 @@ package com.back.domain.post.service;
 
 import com.back.domain.post.entity.Post;
 import com.back.domain.post.repository.PostRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class PostService {
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
     public void save(Post post) {
         postRepository.save(post);
