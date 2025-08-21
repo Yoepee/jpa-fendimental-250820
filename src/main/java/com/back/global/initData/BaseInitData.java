@@ -7,6 +7,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Optional;
+
 @Configuration
 public class BaseInitData {
     @Autowired
@@ -17,19 +19,17 @@ public class BaseInitData {
         return args -> {
             if (postRepository.count() > 0) return;
 
-            Post post = new Post();
-            post.setTitle("제목 1");
-            post.setContent("내용 1");
+            Post post = new Post("제목 1", "내용 1");
             postRepository.save(post);
 
-            Post post2 = new Post();
-            post2.setTitle("제목 2");
-            post2.setContent("내용 2");
+            Post post2 = new Post("제목 2", "내용 2");
             postRepository.save(post2);
 
             // insert into posts (content,title,id) values (?,?,default)
 
             System.out.println("기본 데이터 초기화");
+
+            Optional<Post> findPost = postRepository.findById(1);
         };
     }
 }
