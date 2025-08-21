@@ -28,3 +28,6 @@ logging:
             bind: TRACE
             # SQL ?? ? ?? ?? ??? ??
             extract: TRACE
+      springframework:
+        transaction:
+          interceptor: TRACE
