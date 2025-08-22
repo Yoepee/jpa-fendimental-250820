@@ -1,5 +1,6 @@
 package com.back.global.initData;
 
+import com.back.domain.member.entity.Member;
 import com.back.domain.member.service.MemberService;
 import com.back.domain.post.entity.Post;
 import com.back.domain.post.service.PostService;
@@ -29,16 +30,22 @@ public class BaseInitData {
             self.work2();
             new Thread(() -> self.work3()).start();
             self.work4();
-            self.work5();
         };
     }
 
     @Transactional
     void work1() {
         if (postService.count() > 0) return;
+        if (memberService.count() > 0) return;
 
-        postService.write("제목 1", "내용 1");
-        postService.write("제목 2", "내용 2");
+        Member member = memberService.join("user1", "1234", "사용자 1");
+        memberService.join("user2", "1234", "사용자 2");
+        memberService.join("user3", "1234", "사용자 3");
+        memberService.join("user4", "1234", "사용자 4");
+        memberService.join("user5", "1234", "사용자 5");
+
+        postService.write(member, "제목 1", "내용 1");
+        postService.write(member, "제목 2", "내용 2");
     }
 
     @Transactional(readOnly = true)
@@ -70,16 +77,5 @@ public class BaseInitData {
         Post post = opPost.get();
 
         postService.modify(post, "제목 1 수정2", "내용 1 수정2");
-    }
-
-    @Transactional
-    void work5() {
-        if (memberService.count() > 0) return;
-
-        memberService.join("user1", "1234", "사용자 1");
-        memberService.join("user2", "1234", "사용자 2");
-        memberService.join("user3", "1234", "사용자 3");
-        memberService.join("user4", "1234", "사용자 4");
-        memberService.join("user5", "1234", "사용자 5");
     }
 }

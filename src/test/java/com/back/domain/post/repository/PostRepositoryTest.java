@@ -1,5 +1,6 @@
 package com.back.domain.post.repository;
 
+import com.back.domain.member.entity.Member;
 import com.back.domain.post.entity.Post;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,8 @@ public class PostRepositoryTest {
     @Test
     @DisplayName("글 생성")
     void t2() {
-        Post post = new Post("제목 3", "내용 3");
+        Member author = new Member("user1", "1234", "사용자 1");
+        Post post = new Post(author, "제목 3", "내용 3");
         assertThat(post.getId()).isEqualTo(0);
         postRepository.save(post);
         assertThat(post.getId()).isGreaterThan(0);

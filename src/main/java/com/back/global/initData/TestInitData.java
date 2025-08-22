@@ -1,5 +1,7 @@
 package com.back.global.initData;
 
+import com.back.domain.member.entity.Member;
+import com.back.domain.member.service.MemberService;
 import com.back.domain.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ public class TestInitData {
     @Lazy
     private TestInitData self;
     private final PostService postService;
+    private final MemberService memberService;
 
     @Bean
     ApplicationRunner testInitDataApllicationRunner() {
@@ -28,7 +31,8 @@ public class TestInitData {
     public void work1() {
         if (postService.count() >= 4) return;
 
-        postService.write("제목 3", "내용 3");
-        postService.write("제목 4", "내용 4");
+        Member member = memberService.join("user1", "1234", "사용자 1");
+        postService.write(member, "제목 3", "내용 3");
+        postService.write(member, "제목 4", "내용 4");
     }
 }
