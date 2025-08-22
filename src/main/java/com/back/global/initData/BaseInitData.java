@@ -66,6 +66,6 @@ public class BaseInitData {
         Optional<Post> opPost = postService.findById(1);
         Post post = opPost.get();
 
-        postService.modify(post, "제목 1 수정", "내용 1 수정");
+        postService.modify(post, "제목 1 수정2", "내용 1 수정2");
     }
 }
