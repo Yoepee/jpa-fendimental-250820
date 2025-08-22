@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "posts")
 @ToString
+@EntityListeners(AuditingEntityListener.class)
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,13 +25,13 @@ public class Post {
     private String title; // VARCHAR(255)
     @Column(columnDefinition = "TEXT")
     private String content; // TEXT
+    @CreatedDate
     private LocalDateTime createDate;
+    @LastModifiedDate
     private LocalDateTime modifyDate;
 
     public Post(String title, String content) {
         this.title = title;
         this.content = content;
-        createDate = LocalDateTime.now();
-        modifyDate = LocalDateTime.now();
     }
 }

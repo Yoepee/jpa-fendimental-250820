@@ -5,7 +5,6 @@ import com.back.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -26,19 +25,8 @@ public class PostService {
     }
 
     public void modify(Post post, String title, String content) {
-        boolean isChanged = false;
-
-        if (post.getTitle().equals(title)){
-            post.setTitle(title);
-            isChanged = true;
-        }
-
-        if (post.getContent().equals(content)){
-            post.setContent(content);
-            isChanged = true;
-        }
-
-        if (isChanged)  post.setModifyDate(LocalDateTime.now());
+        post.setTitle(title);
+        post.setContent(content);
 
         postRepository.save(post);
     }
