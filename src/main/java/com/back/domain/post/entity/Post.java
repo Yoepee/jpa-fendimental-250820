@@ -1,15 +1,13 @@
 package com.back.domain.post.entity;
 
-import jakarta.persistence.*;
+import com.back.global.jpa.entity.BaseEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
@@ -17,18 +15,10 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "posts")
 @ToString
-@EntityListeners(AuditingEntityListener.class)
-public class Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id; // INT
+public class Post extends BaseEntity {
     private String title; // VARCHAR(255)
     @Column(columnDefinition = "TEXT")
     private String content; // TEXT
-    @CreatedDate
-    private LocalDateTime createDate;
-    @LastModifiedDate
-    private LocalDateTime modifyDate;
 
     public Post(String title, String content) {
         this.title = title;
