@@ -26,6 +26,7 @@ public class BaseInitData {
             self.work1();
             self.work2();
             new Thread(() -> self.work3()).start();
+            self.work4();
         };
     }
 
@@ -58,5 +59,13 @@ public class BaseInitData {
         Post post2 = opPost2.get();
 
         postService.modify(post2, "제목 2 수정", "내용 2 수정");
+    }
+
+    @Transactional
+    void work4() {
+        Optional<Post> opPost = postService.findById(1);
+        Post post = opPost.get();
+
+        postService.modify(post, "제목 1 수정", "내용 1 수정");
     }
 }
