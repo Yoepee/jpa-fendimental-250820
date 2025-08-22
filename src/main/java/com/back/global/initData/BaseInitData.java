@@ -33,8 +33,8 @@ public class BaseInitData {
     void work1() {
         if (postService.count() > 0) return;
 
-        postService.save(new Post("제목 1", "내용 1"));
-        postService.save(new Post("제목 2", "내용 2"));
+        postService.write("제목 1", "내용 1");
+        postService.write("제목 2", "내용 2");
     }
 
     @Transactional(readOnly = true)
