@@ -12,10 +12,6 @@ import java.util.Optional;
 public class PostService {
     private final PostRepository postRepository;
 
-    public void save(Post post) {
-        postRepository.save(post);
-    }
-
     public Optional<Post> findById(Integer id) {
         return postRepository.findById(id);
     }
