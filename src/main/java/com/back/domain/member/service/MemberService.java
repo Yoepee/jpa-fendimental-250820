@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -24,5 +25,9 @@ public class MemberService {
     private String encryptPassword(String password) {
         String encryptedPassword = String.valueOf((password+"secret24").hashCode());
         return Base64.getEncoder().encodeToString((password+"salt").getBytes());
+    }
+
+    public Optional<Member> findById(int i) {
+        return memberRepository.findById(i);
     }
 }

@@ -26,6 +26,7 @@ public class BaseInitData {
     @Bean
     ApplicationRunner baseInitDataApllicationRunner() {
         return args -> {
+            self.work0();
             self.work1();
             self.work2();
             new Thread(() -> self.work3()).start();
@@ -34,15 +35,21 @@ public class BaseInitData {
     }
 
     @Transactional
-    void work1() {
-        if (postService.count() > 0) return;
+    void work0() {
         if (memberService.count() > 0) return;
 
-        Member member = memberService.join("user1", "1234", "사용자 1");
+        memberService.join("user1", "1234", "사용자 1");
         memberService.join("user2", "1234", "사용자 2");
         memberService.join("user3", "1234", "사용자 3");
         memberService.join("user4", "1234", "사용자 4");
         memberService.join("user5", "1234", "사용자 5");
+    }
+
+    @Transactional
+    void work1() {
+        if (postService.count() > 0) return;
+
+        Member member = memberService.findById(1).get();
 
         postService.write(member, "제목 1", "내용 1");
         postService.write(member, "제목 2", "내용 2");

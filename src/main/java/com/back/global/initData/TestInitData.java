@@ -32,6 +32,8 @@ public class TestInitData {
         if (postService.count() >= 4) return;
 
         Member member = memberService.join("user1", "1234", "사용자 1");
+        postService.write(member, "제목 1", "내용 1");
+        postService.write(member, "제목 2", "내용 2");
         postService.write(member, "제목 3", "내용 3");
         postService.write(member, "제목 4", "내용 4");
     }
