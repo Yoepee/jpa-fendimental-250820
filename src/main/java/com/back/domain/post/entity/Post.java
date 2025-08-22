@@ -13,7 +13,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @Entity
-@Table(name = "posts")
+@Table(name = "post")
 @ToString
 public class Post extends BaseEntity {
     private String title; // VARCHAR(255)

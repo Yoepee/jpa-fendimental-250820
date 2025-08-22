@@ -15,13 +15,13 @@ import org.springframework.context.annotation.Profile;
 public class TestInitData {
     @Autowired
     @Lazy
-    private TestInitData testInitData;
+    private TestInitData self;
     private final PostService postService;
 
     @Bean
     ApplicationRunner testInitDataApllicationRunner() {
         return args -> {
-            work1();
+            self.work1();
         };
     }
 
