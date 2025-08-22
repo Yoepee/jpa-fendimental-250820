@@ -25,6 +25,7 @@ public class BaseInitData {
         return args -> {
             self.work1();
             self.work2();
+            self.work3();
         };
     }
 
@@ -42,5 +43,13 @@ public class BaseInitData {
 
         Post post = opPost.get();
         System.out.println("post:" + post);
+    }
+
+    @Transactional
+    void work3() {
+        Optional<Post> opPost = postService.findById(1);
+        Post post = opPost.get();
+
+        postService.modify(post, "제목 1 수정", "내용 1 수정");
     }
 }
